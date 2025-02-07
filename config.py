@@ -4,7 +4,7 @@ CONFIG = {
     "data_path": "data/train.csv",
     "test_path": "data/test.csv",  # (Optional: split train.csv)
     "image_folder": "data/data_image/",
-    "batch_size": 32,
+    "batch_size": 8,
     "learning_rate": 1e-4,
     "num_epochs": 2,
     "num_classes": 2,

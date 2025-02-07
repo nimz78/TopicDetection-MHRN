@@ -5,21 +5,21 @@ import torchvision.models as models
 
 class MHRN(nn.Module):
 
-    def __init__(self, vocab_size, embed_dim=300, hidden_dim=256, num_layers=2, num_topics=2):
-            super(MHRN, self).__init__()
+    def __init__(self, vocab_size, embed_dim=300, hidden_dim=128, num_layers=1, num_topics=2):
+        super(MHRN, self).__init__()
 
-            # **Text Encoder: RNN (GRU)**
-            self.embedding = nn.Embedding(vocab_size, embed_dim)
-            self.rnn = nn.GRU(embed_dim, hidden_dim, num_layers=num_layers, batch_first=True, bidirectional=True)
+        # **Text Encoder: RNN (GRU)**
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        self.rnn = nn.GRU(embed_dim, hidden_dim, num_layers=num_layers, batch_first=True, bidirectional=True)
 
-            # **Image Encoder: CNN (ResNet50)**
-            resnet = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
-            self.cnn = nn.Sequential(*list(resnet.children())[:-1])  # Remove FC layer
-            self.image_fc = nn.Linear(2048, hidden_dim * 2)  # Match RNN output dimension
+        # **Image Encoder: ResNet18 (Faster than ResNet50)**
+        resnet = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)  # Smaller model
+        self.cnn = nn.Sequential(*list(resnet.children())[:-1])  # Remove last FC layer
+        self.image_fc = nn.Linear(512, hidden_dim * 2)  # Adjust dimensions
 
-            # **Fusion & Classification**
-            self.fc = nn.Linear(hidden_dim * 2 + hidden_dim * 2, num_topics)  # Ensure dimensions match
-            self.dropout = nn.Dropout(0.5)
+        # **Fusion & Classification**
+        self.fc = nn.Linear(hidden_dim * 2 + hidden_dim * 2, num_topics)  # Ensure dimensions match
+        self.dropout = nn.Dropout(0.3)  # Reduce overfitting
 
     def forward(self, text, text_lengths, images):
         # **Text Processing**

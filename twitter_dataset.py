@@ -16,9 +16,10 @@ class CrisisMMDataset(Dataset):
 
         # Image transformations
         self.transform = transforms.Compose([
-            transforms.Resize((224, 224)),
+            transforms.Resize((128, 128)),  # Reduce size
+            transforms.Grayscale(num_output_channels=3),  # Convert back to 3 channels
             transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+            transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])  # Match 3-channel normalization
         ])
 
     def text_to_seq(self, text):
@@ -37,6 +38,8 @@ class CrisisMMDataset(Dataset):
         text = row["text"]
         image_path = row["image_path"]
         label = row["label"]
+        text_seq = self.text_to_seq(text)
+        text_length = len(text_seq)  # ✅ Get the length of the sequence
 
         # Debugging: Print file path
         print(f"Loading image: {image_path}")
@@ -49,7 +52,8 @@ class CrisisMMDataset(Dataset):
         image = self.transform(image)
 
         return {
-            "text": self.text_to_seq(text),
+            "text": text_seq,
+            "text_length": torch.tensor(text_length, dtype=torch.int64),  # ✅ Return as tensor
             "image": image,
             "label": torch.tensor(label, dtype=torch.long)
         }
