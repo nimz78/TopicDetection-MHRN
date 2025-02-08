@@ -56,6 +56,7 @@ pip install -r requirements.txt
 ```
 
 ### **🔹 3️⃣ Download & Prepare CrisisMMD Dataset**
+-⚠️this project already has data, If you want to use all data of CrisisMMD dataset do this part.⚠️
 - Download the dataset from [CrisisMMD on Kaggle](https://www.kaggle.com/datasets/mohammadabdulbasit/crisismmd).  
 - Place it inside the `data/` directory.  
 
@@ -118,7 +119,7 @@ The **MHRN model** consists of:
 ---
 
 ## **📬 Contact & Contribution**
-- **Author:** [Nima Zare & AhmadReza Majd]  
+- **Author:** [Nima Zare]  
 - **GitHub:** [TopicDetection-MHRN](https://github.com/nimz78/TopicDetection-MHRN)  
 - **Issues & Contributions:** Feel free to open issues or submit PRs!  
 
