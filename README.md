@@ -44,8 +44,8 @@ This project implements a **Multimodal Hierarchical Reasoning Network (MHRN)** t
 
 ### **🔹 1️⃣ Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/multimodal-crisis-detection.git
-cd multimodal-crisis-detection
+git https://github.com/nimz78/TopicDetection-MHRN
+cd TopicDetection-MHRN
 ```
 
 ### **🔹 2️⃣ Create a Virtual Environment & Install Dependencies**
@@ -56,7 +56,7 @@ pip install -r requirements.txt
 ```
 
 ### **🔹 3️⃣ Download & Prepare CrisisMMD Dataset**
-- Download the dataset from [CrisisMMD on Kaggle](https://crisisnlp.qcri.org/crisismmd).  
+- Download the dataset from [CrisisMMD on Kaggle](https://www.kaggle.com/datasets/mohammadabdulbasit/crisismmd).  
 - Place it inside the `data/` directory.  
 
 ### **🔹 4️⃣ Preprocess the Dataset**
@@ -118,8 +118,8 @@ The **MHRN model** consists of:
 ---
 
 ## **📬 Contact & Contribution**
-- **Author:** [Your Name]  
-- **GitHub:** [Your Repository](https://github.com/yourusername/multimodal-crisis-detection)  
+- **Author:** [Nima Zare & AhmadReza Majd]  
+- **GitHub:** [TopicDetection-MHRN](https://github.com/nimz78/TopicDetection-MHRN)  
 - **Issues & Contributions:** Feel free to open issues or submit PRs!  
 
 🚀 **Let me know if you need any modifications!** 🔥🔥🔥
